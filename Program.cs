@@ -8,6 +8,19 @@ m = 3, n = 4.
 1 -3,3 8 -9,9
 
 8 7,8 -7,1 9 */
+void DoubleArray()
+{
+    double[,] array = new double[3, 4];
+        for (int i = 0; i < array.GetLength(0); i++)
+    {
+        for (int j = 0; j < array.GetLength(1); j++)
+        {
+             array[i, j] = new Random().NextDouble() * 2;
+                Console.Write(Math.Round(array[i, j], 1) + " ");
+        }
+        Console.WriteLine();
+    }
+}
 
 
 
