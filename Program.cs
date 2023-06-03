@@ -36,36 +36,63 @@ void DoubleArray()
 8 4 2 4
 
 17 -> такого числа в массиве нет */
-
 Console.Write("Введите ваше число: ");
-int inp = Convert.ToInt32(Console.ReadLine());
-int indx = 0;
-int indy = 0;
-        int[,] array = new int[3, 4];
-            for (int i = 0; i < array.GetLength(0); i++)
-        {
-            for (int j = 0; j < array.GetLength(1); j++)
-            {
-                array[i, j] = new Random().Next(1,10);
-                Console.Write(array[i,j] + " ");
-            }
-            Console.WriteLine();
-        }
-if(inp != array[indx, indy])
+int num = Convert.ToInt32(Console.ReadLine());
+int[] prs = new int[2];
+int ctr = prs[0];
+int stol = prs[1];
+int[,] number = new int[3, 4];
+Randarr(number);
+PrintArr(number);
+FindNum(num);
+    
+if(ctr >= 0 & stol >= 0)
 {
-    for(indx = 0; indx < array.GetLength(0); indx++)
-    {
-        for(indy = 0; indy < array.GetLength(1); indy++)
-        {
-
-        }
-    }
+    Console.WriteLine($"строка {stol + 1} столбец {ctr + 1}");    
 }
 else
 {
-    Console.WriteLine(indx + " " + indy);
+    Console.WriteLine($"Числа {num} нет в массиве");
 }
+    
+    void Randarr(int[,] array)
+    {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                array[i, j] = new Random().Next(0, 10);
+            }
+        }
+    }  
 
+
+    void PrintArr(int[,] array)
+    {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                Console.Write(array[i, j] + " ");
+            }
+            Console.WriteLine("");
+        }
+    }
+    int[] FindNum(int num)
+    {
+        for(int i = 0; i < number.GetLength(1); i++)
+        {
+            for(int j = 0; j < number.GetLength(0); j++ )
+            {
+                if(number[j, i] == num)
+                { 
+                prs[0] = i;
+                prs[1] = j;
+                }
+            }
+        }
+    return prs;
+    }
 
 
 
@@ -79,19 +106,50 @@ else
 8 4 2 4
 Среднее арифметическое каждого столбца: 4,6; 5,6; 3,6; 3. */
 
-/* int sum = 0;
+void AverNumb()
+{
+    Console.Write("Введите число строк: ");
+    int indx = Convert.ToInt32(Console.ReadLine());
+    Console.Write("Введите число столбцов: ");
+    int indy = Convert.ToInt32(Console.ReadLine());
 
-int[,] array = new int[3, 4];
-    for (int i = 0; i < array.GetLength(1); i++)
+    int[,] numb = new int[indx, indy];
+    RandNum(numb);
+    PrintArr(numb);
+    Console.Write("Среднее арифметическое столбца: ");
+    for (int j = 0; j < numb.GetLength(1); j++)
     {
-        for (int j = 0; j < array.GetLength(0); j++)
+        double aver = 0;
+        for (int i = 0; i < numb.GetLength(0); i++)
         {
-            array[j, i] = new Random().Next(1,10);
-            Console.Write(array[j,i] + " ");
-            sum += array[j,i];
-        
+            aver = (aver + numb[i, j]);
         }
-        Console.WriteLine();
-        Console.WriteLine(sum + " ");
+        aver = aver / indx;
+
+        Console.Write(Math.Round(aver, 1) + "; ");
     }
- */
+    Console.WriteLine();
+
+    void RandNum(int[,] array)
+    {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                array[i, j] = new Random().Next(0, 10);
+            }
+        }
+    }   
+    
+    void PrintArr(int[,] array)
+    {
+        for (int i = 0; i < array.GetLength(0); i++)
+        {
+            for (int j = 0; j < array.GetLength(1); j++)
+            {
+                Console.Write(array[i, j] + " ");
+            }
+            Console.WriteLine("");
+        }
+    }
+}
